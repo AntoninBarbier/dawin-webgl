@@ -58,13 +58,11 @@ function initShaders() {
     var fragment = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragment, fragmentSource);
 
-    // compilation & debug
-
+    // compile & debug
     gl.compileShader(vertex);
     if (!gl.getShaderParameter(vertex, gl.COMPILE_STATUS)) {
         console.error('ERROR compiling vertex shader !', gl.getShaderInfoLog(vertex));
     }
-
     gl.compileShader(fragment);
     if (!gl.getShaderParameter(fragment, gl.COMPILE_STATUS)) {
         console.error('ERROR compiling fragment shader !', gl.getShaderInfoLog(fragment));
@@ -74,14 +72,11 @@ function initShaders() {
     program = gl.createProgram();
     gl.attachShader(program, fragment);
     gl.attachShader(program, vertex);
-
     gl.linkProgram(program);
-
     // debug
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
         console.log("Could not initialise shaders", gl.getProgramInfoLog(program));
     }
-
     gl.useProgram(program);
 
 }
